@@ -23,7 +23,7 @@ php artisan optimize:clear &>> $MYLOG
 php artisan config:cache &>> $MYLOG
 php artisan route:cache &>> $MYLOG
 php artisan view:cache &>> $MYLOG
-php artisan migrate:refresh --seed &>> $MYLOG
+php artisan migrate:refresh --seed --force &>> $MYLOG
 php artisan key:generate &>> $MYLOG
 php artisan storage:link &>> $MYLOG
 
