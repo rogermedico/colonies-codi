@@ -8,7 +8,7 @@
         @vite('resources/js/app.js')
     </head>
     <body class="container bg-color-tertiari">
-        <h1 class="my-4">Seguretat dels generadors</h1>
+        <h1 class="my-4">⚡ Seguretat dels generadors ⚡</h1>
 
         <div class="row">
             @foreach ($folders as $folder)
