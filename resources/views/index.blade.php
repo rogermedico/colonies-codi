@@ -3,12 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
+        <title>{{config('app.name')}}</title>
 
         @vite('resources/js/app.js')
     </head>
     <body class="container bg-color-tertiari">
         <h1 class="my-4">⚡ Seguretat dels generadors ⚡</h1>
+
+        <x-messages/>
 
         <div class="row">
             @foreach ($folders as $folder)
@@ -26,6 +28,9 @@
                             </h4>
                             <ul>
                                 <li>
+                                    codi: {{$folder->lastCodeNotSolved->code}}
+                                </li>
+                                <li>
                                     Pàgina: {{$folder->lastCodeNotSolved->page}}
                                 </li>
                                 <li>
@@ -37,7 +42,7 @@
                             </ul>
                             <div class="mb-3">
                                 <label for="code-input-{{$folder->id}}" class="form-label">Introdueix el codi</label>
-                                <input type="text" class="form-control" id="code-input-{{$folder->id}}" placeholder="ABC123" required>
+                                <input type="text" class="form-control" id="code-input-{{$folder->id}}" name="guess" placeholder="ABC123" required>
                             </div>
                             <div class=" text-end">
                                     <button type="submit" class="card-link btn btn-primary">
