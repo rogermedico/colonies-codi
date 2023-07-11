@@ -1,0 +1,10 @@
+// Body padding due to sticky client navbar
+.pt-body {
+    padding-top: 57.5px;
+}
+
+@media screen and (max-width: 768px) {
+    .pt-body {
+        padding-top: 56px;
+    }
+}
