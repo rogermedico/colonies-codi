@@ -13,23 +13,42 @@ class CodeController extends Controller
     {
         $validated = $request->validated();
 
-        $folder = Folder::find($validated['folder']);
+        $folder = Folder::query()
+            ->with('codes')
+            ->find($validated['folder']);
 
-        $code = Code::find($validated['code']);
 
-        if ($code->code !== Str::upper($validated['guess'])) {
-            $folder->remaining_tries = $folder->remaining_tries - 1;
+        foreach ($folder->codes as $code) {
+            if ($code->code === Str::upper($validated['guess'])) {
+                $code->solved = true;
 
-            $folder->save();
+                $code->save();
 
-            return back()->with('error', 'Codi erroni, et queden '. $folder->remaining_tries .' intents');
+                if ($folder->solved()) {
+                    Folder::addTriesToOtherFolders($folder);
+                }
+
+                return back()->with('message', 'Codi validat');
+            }
         }
 
-        $code->solved = true;
+        $folder->remaining_tries = $folder->remaining_tries - 1;
 
-        $code->save();
+        $folder->save();
 
-        return back()->with('message', 'Codi validat');
+        return back()->with('error', 'Codi erroni, et queden '. $folder->remaining_tries .' intents');
+    }
 
+    public function reset()
+    {
+        Code::query()->update(['solved' => false]);
+        Folder::query()->update(['remaining_tries' => Folder::STARTING_TRIES]);
+
+        return to_route('index')->with('message', 'Tots els codis resetejats');
+    }
+
+    public function showFolder(Folder $folder)
+    {
+        return response()->json($folder->codes()->get('code'));
     }
 }

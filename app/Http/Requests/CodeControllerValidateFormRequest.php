@@ -26,10 +26,6 @@ class CodeControllerValidateFormRequest extends FormRequest
                 'required',
                 'exists:folders,id',
             ],
-            'code' => [
-                'required',
-                'exists:codes,id',
-            ],
             'guess' => [
                 'required',
                 'string',

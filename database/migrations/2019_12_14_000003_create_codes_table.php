@@ -14,9 +14,6 @@ return new class extends Migration
         Schema::create('codes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('folder_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->integer('page');
-            $table->integer('row');
-            $table->integer('column');
             $table->string('code');
             $table->integer('order');
             $table->boolean('solved');

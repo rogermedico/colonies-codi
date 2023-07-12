@@ -20,3 +20,9 @@ Route::get('/', [ViewController::class, 'index'])
 
 Route::post('code/validate', [CodeController::class, 'validateCode'])
     ->name('code.validate');
+
+Route::get('reset', [CodeController::class, 'reset'])
+    ->name('reset');
+
+Route::get('carpeta/{folder}', [CodeController::class, 'showFolder'])
+    ->name('folder.show');

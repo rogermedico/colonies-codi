@@ -9,20 +9,39 @@ class Folder extends Model
 {
     use HasFactory;
 
-    public const MAX_PAGES = 5;
-    public const MAX_ROWS = 20;
-    public const MAX_COLUMNS = 4;
+    public const STARTING_TRIES = 3;
+
+    protected $fillable = [
+        'name',
+        'remaining_tries',
+    ];
 
     public function codes()
     {
         return $this->hasMany(Code::class);
     }
 
-    public function getLastCodeNotSolved()
+    public function solved()
     {
-        return $this->codes()
+        $numberOfCodesNotSolved = $this->codes()
             ->where('solved', false)
-            ->orderby('order', 'asc')
-            ->first();
+            ->count();
+
+        return $numberOfCodesNotSolved === 0;
+    }
+
+    public static function addTriesToOtherFolders(Folder $folder)
+    {
+        $folders = self::query()
+            ->where('id', '!=', $folder->id)
+            ->get();
+
+        foreach ($folders as $folder) {
+            if (! $folder->solved()) {
+                $folder->remaining_tries++;
+
+                $folder->save();
+            }
+        }
     }
 }

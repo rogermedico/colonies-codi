@@ -14,6 +14,7 @@ class FolderSeeder extends Seeder
         'Carpeta blava',
         'Carpeta groga',
         'Carpeta marró',
+        'Carpeta blanca',
     ];
 
     /**
@@ -21,7 +22,11 @@ class FolderSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (self::FOLDER_NAMES as $folderName) {
+        $folderNames = self::FOLDER_NAMES;
+
+        shuffle($folderNames);
+
+        foreach ($folderNames as $folderName) {
             Folder::factory()->create([
                 'name' => $folderName,
             ]);

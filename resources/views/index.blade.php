@@ -8,46 +8,62 @@
         @vite('resources/js/app.js')
     </head>
     <body class="container bg-color-tertiari">
-        <h1 class="my-4">⚡ Seguretat dels generadors ⚡</h1>
+        <h1 class="my-4 text-center">
+            ⚡ Seguretat dels generadors ⚡
+        </h1>
 
         <x-messages/>
 
         <div class="row">
             @foreach ($folders as $folder)
-
             <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card h-100 shadow">
 
                     <form method="post" action="{{route('code.validate')}}">
                         @csrf
                         <input type="hidden" name="folder" value="{{$folder->id}}">
-                        <input type="hidden" name="code" value="{{$folder->lastCodeNotSolved->id}}">
                         <div class="card-body">
                             <h4 class="card-title text-center">
                                 {{$folder->name}}
                             </h4>
-                            <ul>
-                                <li>
-                                    codi: {{$folder->lastCodeNotSolved->code}}
-                                </li>
-                                <li>
-                                    Pàgina: {{$folder->lastCodeNotSolved->page}}
-                                </li>
-                                <li>
-                                    Fila: {{$folder->lastCodeNotSolved->row}}
-                                </li>
-                                <li>
-                                    Columna: {{$folder->lastCodeNotSolved->column}}
-                                </li>
-                            </ul>
+                            <div class="d-flex justify-content-around mb-3">
+                                @foreach ($folder->codes as $code)
+                                    <div class="text-center">
+                                        @if(app()->environment('local'))
+                                            <div>
+                                                {{$code->code}}
+                                            </div>
+                                        @endif
+                                        @if ($code->solved)
+                                            <i class="fa-solid fa-check text-success"></i>
+                                        @else
+                                            <i class="fa-solid fa-question"></i>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
                             <div class="mb-3">
-                                <label for="code-input-{{$folder->id}}" class="form-label">Introdueix el codi</label>
-                                <input type="text" class="form-control" id="code-input-{{$folder->id}}" name="guess" placeholder="ABC123" required>
+                                <label for="code-input-{{$folder->id}}" class="form-label">Introdueix un codi</label>
+                                @if ($folder->solved())
+                                    <input type="text" class="form-control" id="code-input-{{$folder->id}}" name="guess" placeholder="ABC123" required disabled>
+                                @else
+                                    <input type="text" class="form-control" id="code-input-{{$folder->id}}" name="guess" placeholder="ABC123" required>
+                                @endif
                             </div>
                             <div class=" text-end">
-                                    <button type="submit" class="card-link btn btn-primary">
-                                        {{ __('Validar codi') }}
-                                    </button>
+                                    @if ($folder->solved())
+                                        <span class="card-link btn btn-success">
+                                            {{ __('Tot resolt!') }}
+                                        </span>
+                                    @elseif ($folder->remaining_tries > 0)
+                                        <button type="submit" class="card-link btn btn-primary">
+                                            {{ __('Validar codi') }}
+                                        </button>
+                                    @else
+                                        <button type="submit" class="card-link btn btn-primary disabled">
+                                            {{ __('Validar codi') }}
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -59,6 +75,8 @@
             </div>
             @endforeach
         </div>
+
+        <div class="lds-roller text-color-success d-none"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
     </body>
 </html>

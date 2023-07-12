@@ -19,9 +19,6 @@ class CodeFactory extends Factory
     {
         return [
             'folder_id' => Folder::factory(),
-            'page' => fake()->numberBetween(1, Folder::MAX_PAGES),
-            'row' => fake()->numberBetween(1, Folder::MAX_ROWS),
-            'column' => fake()->numberBetween(1, Folder::MAX_COLUMNS),
             'code' => fake()->regexify('[A-Z0-9]{6}'),
             'order' => fake()->unique()->randomNumber(),
             'solved' => false,

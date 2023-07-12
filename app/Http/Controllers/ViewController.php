@@ -9,11 +9,9 @@ class ViewController extends Controller
 {
     public function index()
     {
-        $folders = Folder::all();
-
-        foreach ($folders as $folder) {
-            $folder->lastCodeNotSolved = $folder->getLastCodeNotSolved();
-        };
+        $folders = Folder::query()
+            ->with('codes')
+            ->get();
 
         return view('index', compact('folders'));
     }

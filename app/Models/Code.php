@@ -9,6 +9,16 @@ class Code extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'folder_id',
+        'page',
+        'row',
+        'column',
+        'code',
+        'order',
+        'solved',
+    ];
+
     public function group()
     {
         return $this->belongsTo(Group::class);

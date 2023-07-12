@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Folder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -19,7 +20,7 @@ class FolderFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'remaining_tries' => 3,
+            'remaining_tries' => Folder::STARTING_TRIES,
         ];
     }
 }
