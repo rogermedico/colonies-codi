@@ -8,21 +8,12 @@ use Illuminate\Database\Seeder;
 
 class FolderSeeder extends Seeder
 {
-    private const FOLDER_NAMES = [
-        'Carpeta vermella',
-        'Carpeta verda',
-        'Carpeta blava',
-        'Carpeta groga',
-        'Carpeta marró',
-        'Carpeta blanca',
-    ];
-
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $folderNames = self::FOLDER_NAMES;
+        $folderNames = Folder::NAMES;
 
         shuffle($folderNames);
 

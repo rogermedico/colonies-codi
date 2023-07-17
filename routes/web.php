@@ -24,5 +24,11 @@ Route::post('code/validate', [CodeController::class, 'validateCode'])
 Route::get('reset', [CodeController::class, 'reset'])
     ->name('reset');
 
-Route::get('carpeta/{folder}', [CodeController::class, 'showFolder'])
+Route::get('solucions', [CodeController::class, 'showCodes'])
     ->name('folder.show');
+
+Route::post('folder/{folder}/add-try', [CodeController::class, 'addTry'])
+    ->name('folder.addTry');
+
+Route::post('folder/{folder}/remove-try', [CodeController::class, 'removeTry'])
+    ->name('folder.removeTry');

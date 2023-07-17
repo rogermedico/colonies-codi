@@ -9,16 +9,16 @@ use Illuminate\Database\Seeder;
 
 class CodeSeeder extends Seeder
 {
-    private const NUMBER_OF_CODES = 5;
-
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
+        $numberOfCodes = count(Folder::NAMES) - 1;
+
         Folder::all()
-            ->each(function (Folder $folder) {
-                for ($i = 0; $i < self::NUMBER_OF_CODES; $i++) {
+            ->each(function (Folder $folder) use ($numberOfCodes){
+                for ($i = 0; $i < $numberOfCodes; $i++) {
                     Code::factory()
                         ->create([
                             'folder_id' => $folder->id,

@@ -9,7 +9,15 @@ class Folder extends Model
 {
     use HasFactory;
 
-    public const STARTING_TRIES = 3;
+    public const NAMES = [
+        'Carpeta vermella',
+        'Carpeta blava',
+        'Carpeta groga',
+        'Carpeta verda',
+        'Carpeta marró',
+        'Carpeta blanca',
+        'Carpeta lila',
+    ];
 
     protected $fillable = [
         'name',
@@ -28,6 +36,20 @@ class Folder extends Model
             ->count();
 
         return $numberOfCodesNotSolved === 0;
+    }
+
+    public function addTries(int $tries = 1): void
+    {
+        $this->remaining_tries = $this->remaining_tries + $tries;
+
+        $this->save();
+    }
+
+    public function removeTries(int $tries = 1): void
+    {
+        $this->remaining_tries = $this->remaining_tries - $tries;
+
+        $this->save();
     }
 
     public static function addTriesToOtherFolders(Folder $folder)
