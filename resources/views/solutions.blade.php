@@ -40,7 +40,7 @@
                                 <div class="flex">
                                     <form method="post" action="{{route('folder.removeTry', $folder)}}">
                                         @csrf
-                                        <button type="submit" class="card-link btn btn-outline-danger" @disabled($folder->remaining_tries === 0)>
+                                        <button type="submit" class="card-link btn btn-outline-danger" @disabled($folder->remaining_tries <= 0)>
                                             {{ __('Eliminar un intent') }}
                                         </button>
                                     </form>
@@ -48,7 +48,7 @@
                                 <div class="flex">
                                     <form method="post" action="{{route('folder.addTry', $folder)}}">
                                         @csrf
-                                        <button type="submit" class="card-link btn btn-primary" @disabled($folder->remaining_tries !== 0)>
+                                        <button type="submit" class="card-link btn btn-primary">
                                             {{ __('Afegir un intent') }}
                                         </button>
                                     </form>

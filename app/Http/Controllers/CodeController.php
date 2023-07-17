@@ -29,11 +29,39 @@ class CodeController extends Controller
                     Folder::addTriesToOtherFolders($folder);
                 }
 
-                return back()->with('message', 'Codi validat');
+                if ($folder->remaining_tries !== 0) {
+                    return back()->with(
+                        'message',
+                        'Codi validat!, et queden <span class="fw-bold">'
+                            . $folder->remaining_tries
+                            .'</span> intents'
+                    );
+                } else {
+                    return back()->with(
+                        'message',
+                        'Codi validat!, però ja <span class="fw-bold">NO</span> et queden intents, no podras enviar solucions per la <span class="fw-bold">'
+                            . $folder->name
+                            . '</span> fins que n\'aconsegueixis més'
+                    );
+                }
             }
         }
 
-        return back()->with('error', 'Codi erroni, et queden '. $folder->remaining_tries .' intents');
+        if ($folder->remaining_tries !== 0) {
+            return back()->with(
+                'error',
+                'Codi erroni!, et queden <span class="fw-bold">'
+                    . $folder->remaining_tries
+                    .'</span> intents'
+                );
+        } else {
+            return back()->with(
+                'error',
+                'Codi erroni!, <span class="fw-bold">NO</span> et queda cap intent, no podras enviar solucions per la <span class="fw-bold">'
+                    . $folder->name
+                    . '</span> fins que n\'aconsegueixis més'
+                );
+        }
     }
 
     public function reset()
@@ -56,19 +84,38 @@ class CodeController extends Controller
 
     public function addTry(Folder $folder)
     {
-        if ($folder->remaining_tries === 0) {
-            $folder->addTries();
-        }
+        $folder->addTries();
 
-        return back();
+        return back()->with(
+            'message',
+            'S\'ha sumat un intent a la carpeta <span class="fw-bold">'
+                . $folder->name
+                . '</span>, ara li queden <span class="fw-bold">'
+                . $folder->remaining_tries
+                .'</span> intents'
+        );
     }
 
     public function removeTry(Folder $folder)
     {
-        if ($folder->remaining_tries !== 0) {
+        if ($folder->remaining_tries > 0) {
             $folder->removeTries();
         }
 
-        return back();
+        if ($folder->remaining_tries !== 0) {
+            $alertType = 'warning';
+            $message = 'S\'ha restat un intent a la carpeta <span class="fw-bold">'
+                . $folder->name
+                . '</span>, ara li queden <span class="fw-bold">'
+                . $folder->remaining_tries
+                .'</span> intents';
+        } else {
+            $alertType = 'error';
+            $message = 'S\'ha restat un intent a la carpeta <span class="fw-bold">'
+                . $folder->name
+                . '</span>, ara <span class="fw-bold">NO</span> li queda cap intent i no podrà enviar solucions fins que no aconsegueixi mes intents';
+        }
+
+        return back()->with($alertType, $message);
     }
 }
