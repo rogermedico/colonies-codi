@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class FolderFactory extends Factory
+class CountdownFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,9 +20,7 @@ class FolderFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'remaining_tries' => count(Folder::NAMES) - 1,
-            'activated' => false,
+            'finish' => now('Europe/Madrid')->addHours(3),
         ];
     }
 }

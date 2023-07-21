@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ActivateFolderController;
 use App\Http\Controllers\CodeController;
+use App\Http\Controllers\CountdownController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +34,15 @@ Route::post('folder/{folder}/add-try', [CodeController::class, 'addTry'])
 
 Route::post('folder/{folder}/remove-try', [CodeController::class, 'removeTry'])
     ->name('folder.removeTry');
+
+Route::get('folder/{folder}/activate', ActivateFolderController::class)
+    ->name('folder.activate.toggle');
+
+Route::get('countdown/reset', [CountdownController::class, 'reset'])
+    ->name('countdown.reset');
+
+Route::get('countdown/{minutes}/add', [CountdownController::class, 'addMinutes'])
+    ->name('countdown.minutes.add');
+
+Route::get('countdown/{minutes}/subtract', [CountdownController::class, 'subtractMinutes'])
+    ->name('countdown.minutes.subtract');

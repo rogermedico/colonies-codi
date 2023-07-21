@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CodeControllerValidateFormRequest;
 use App\Models\Code;
+use App\Models\Countdown;
 use App\Models\Folder;
 use Illuminate\Support\Str;
 
@@ -21,9 +22,7 @@ class CodeController extends Controller
 
         foreach ($folder->codes as $code) {
             if ($code->code === Str::upper($validated['guess'])) {
-                $code->solved = true;
-
-                $code->save();
+                $code->markAsSolved();
 
                 if ($folder->solved()) {
                     Folder::addTriesToOtherFolders($folder);
@@ -79,7 +78,9 @@ class CodeController extends Controller
             ->with('codes')
             ->get();
 
-        return view('solutions', compact('folders'));
+        $countdown = Countdown::getCountdown();
+
+        return view('solutions', compact('folders', 'countdown'));
     }
 
     public function addTry(Folder $folder)

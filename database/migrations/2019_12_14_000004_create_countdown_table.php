@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('folders', function (Blueprint $table) {
+        Schema::create('countdowns', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('remaining_tries');
-            $table->boolean('activated');
-            $table->timestamps();
+            $table->datetime('finish');
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('folders');
+        Schema::dropIfExists('countdowns');
     }
 };

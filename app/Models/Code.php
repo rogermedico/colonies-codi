@@ -24,6 +24,13 @@ class Code extends Model
         return $this->belongsTo(Group::class);
     }
 
+    public function markAsSolved()
+    {
+        $this->solved = true;
+
+        $this->save();
+    }
+
     public static function getLastNotSolved()
     {
         return self::query()

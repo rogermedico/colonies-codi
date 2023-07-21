@@ -22,6 +22,7 @@ class Folder extends Model
     protected $fillable = [
         'name',
         'remaining_tries',
+        'activated',
     ];
 
     public function codes()
@@ -48,6 +49,13 @@ class Folder extends Model
     public function removeTries(int $tries = 1): void
     {
         $this->remaining_tries = $this->remaining_tries - $tries;
+
+        $this->save();
+    }
+
+    public function activateToggle(): void
+    {
+        $this->activated = $this->activated ? false : true;
 
         $this->save();
     }

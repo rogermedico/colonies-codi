@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Countdown;
 use App\Models\Folder;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,8 @@ class ViewController extends Controller
             ->with('codes')
             ->get();
 
-        return view('index', compact('folders'));
+        $countdown = Countdown::getCountdown();
+
+        return view('index', compact('folders', 'countdown'));
     }
 }

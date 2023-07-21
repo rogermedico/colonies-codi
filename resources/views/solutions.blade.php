@@ -5,6 +5,21 @@
         ⚡ Seguretat dels generadors (Solucions) ⚡
     </h1>
 
+    <h2 class="text-center">
+        Compte enrere: <span id="count-down" data-finish-date="{{$countdown->finish}}"></span>
+    </h2>
+    <div class="mb-4 text-center">
+            <a class="btn btn-outline-danger" href="{{route('countdown.reset')}}">
+                Establir per d'aquí 2h
+            </a>
+            <a class="btn btn-primary" href="{{route('countdown.minutes.subtract', 5)}}">
+                Restar 5m
+            </a>
+            <a class="btn btn-primary" href="{{route('countdown.minutes.add', 5)}}">
+                Afegir 5m
+            </a>
+    </div>
+
     <x-messages/>
 
     <div class="row">
