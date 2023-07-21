@@ -10,6 +10,6 @@
     </h2>
 
     <video id="end-video" class="delay fade-in" controls loop preload="auto">
-        <source src="{{asset('public/end.mp4')}}" type="video/mp4">
+        <source src="{{asset('storage/end.mp4')}}" type="video/mp4">
     </video>
 @endsection
