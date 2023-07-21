@@ -73,7 +73,7 @@
                                 </form>
                             @else
                                 <p>
-                                    Tots els codis d'aquesta carpeta validats. Activa l'interruptor per desbloquejar aquesta fase del generador.
+                                    Tots els codis d'aquesta carpeta validats✅. Activa l'interruptor per desbloquejar🔓 aquesta fase del generador.
                                 </p>
                                 <div class="text-center mb-3">
                                     <label class="rocker">
