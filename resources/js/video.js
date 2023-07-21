@@ -6,4 +6,23 @@
             video.play();
         }, video.dataset.delay);
     }
+
+    const activationCountdown = document.getElementById('activation-countdown');
+
+    if (activationCountdown) {
+        let remainingSeconds = 12;
+
+        const interval = setInterval(() => {
+            if (remainingSeconds >= 0) {
+                activationCountdown.textContent = `0h 0m ${remainingSeconds}s`;
+            } else {
+              clearInterval(interval);
+
+              activationCountdown.textContent = 'Generadors activats!';
+            }
+
+            remainingSeconds = remainingSeconds - 1;
+        }, 1000);
+
+    }
 })();
