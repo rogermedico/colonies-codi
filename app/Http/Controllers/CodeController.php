@@ -67,7 +67,10 @@ class CodeController extends Controller
     {
         Code::query()->update(['solved' => false]);
 
-        Folder::query()->update(['remaining_tries' => count(Folder::NAMES) - 1]);
+        Folder::query()->update([
+            'remaining_tries' => count(Folder::NAMES) - 1,
+            'activated' => false,
+        ]);
 
         Countdown::reset();
 

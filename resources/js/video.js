@@ -4,6 +4,6 @@
     if (video) {
         setTimeout(() => {
             video.play();
-        }, 5000);
+        }, video.dataset.delay);
     }
 })();

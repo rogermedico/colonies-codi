@@ -23,20 +23,20 @@ class SolutionsSeeder extends Seeder
 
     private function partiallySolve()
     {
-               // fully solve one folder
-               Folder::inRandomOrder()
-               ->take(1)
-               ->first()
-               ->codes
-               ->each(fn (Code $code) => $code->markAsSolved());
+        // fully solve one folder
+        Folder::inRandomOrder()
+            ->take(1)
+            ->first()
+            ->codes
+            ->each(fn (Code $code) => $code->markAsSolved());
 
-           // partially solve two more folders
-           Folder::inRandomOrder()
-               ->take(2)
-               ->get()
-               ->each(fn (Folder $folder) => $folder->codes
-                   ->random(intval(floor((count(Folder::NAMES) - 1) / 2)))
-                   ->each(fn (Code $code) => $code->markAsSolved()));
+        // partially solve two more folders
+        Folder::inRandomOrder()
+            ->take(2)
+            ->get()
+            ->each(fn (Folder $folder) => $folder->codes
+                ->random(intval(floor((count(Folder::NAMES) - 1) / 2)))
+                ->each(fn (Code $code) => $code->markAsSolved()));
     }
 
     private function fullSolve()
