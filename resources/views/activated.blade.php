@@ -6,7 +6,7 @@
     </h1>
 
     <h2 class="text-center">
-        Activant generadors: <span id="activation-countdown">0h 00m 12s</span>
+        Activant generadors: <span id="activation-countdown">0h 0m 12s</span>
     </h2>
 
     <video id="end-video" class="delay fade-in" data-delay="15000" controls loop preload="auto">

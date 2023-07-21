@@ -13,6 +13,8 @@
         let remainingSeconds = 12;
 
         const interval = setInterval(() => {
+            remainingSeconds = remainingSeconds - 1;
+
             if (remainingSeconds >= 0) {
                 activationCountdown.textContent = `0h 0m ${remainingSeconds}s`;
             } else {
@@ -20,8 +22,6 @@
 
               activationCountdown.textContent = 'Generadors activats!';
             }
-
-            remainingSeconds = remainingSeconds - 1;
         }, 1000);
 
     }
