@@ -69,7 +69,9 @@ class CodeController extends Controller
 
         Folder::query()->update(['remaining_tries' => count(Folder::NAMES) - 1]);
 
-        return to_route('index')->with('message', 'Tots els codis resetejats');
+        Countdown::reset();
+
+        return to_route('index')->with('message', 'Tots els codis, intents i compte enrere resetejats');
     }
 
     public function showCodes()

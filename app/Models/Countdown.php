@@ -21,7 +21,7 @@ class Countdown extends Model
 
     public function timeout(): bool
     {
-        return now('Europe/Madrid')->gt($this->finish);
+        return now('Europe/Madrid')->gt($this->finish->shiftTimezone('Europe/Madrid'));
     }
 
     public static function getCountdown()

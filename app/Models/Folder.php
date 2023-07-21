@@ -74,4 +74,13 @@ class Folder extends Model
             }
         }
     }
+
+    public static function allActivated(): bool
+    {
+        $numberOfDeactivatedFolders = self::query()
+            ->where('activated', false)
+            ->count();
+
+        return $numberOfDeactivatedFolders === 0;
+    }
 }

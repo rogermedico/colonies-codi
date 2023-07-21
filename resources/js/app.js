@@ -9,3 +9,5 @@ import './countdown';
 import './toggleSwitch';
 
 import './autoRefresh';
+
+import './video';

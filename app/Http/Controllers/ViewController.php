@@ -10,6 +10,10 @@ class ViewController extends Controller
 {
     public function index()
     {
+        if (Folder::allActivated()) {
+            return view('activated')->with('message', 'Generadors activats!');
+        }
+
         $folders = Folder::query()
             ->with('codes')
             ->get();

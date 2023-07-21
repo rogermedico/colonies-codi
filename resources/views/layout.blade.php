@@ -12,7 +12,10 @@
 
         @vite('resources/js/app.js')
     </head>
-    <body class="container bg-color-tertiari">
-        @yield('content')
+    <body class="bg-color-tertiari">
+        <div class="container">
+            @yield('content')
+        </div>
+        @yield('end')
     </body>
 </html>
