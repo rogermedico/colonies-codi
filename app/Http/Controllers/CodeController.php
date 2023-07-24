@@ -85,7 +85,7 @@ class CodeController extends Controller
 
         $countdown = Countdown::getCountdown();
 
-        return view('solutions', compact('folders', 'countdown'));
+        return view('admin_pannel', compact('folders', 'countdown'));
     }
 
     public function addTry(Folder $folder)

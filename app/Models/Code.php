@@ -19,14 +19,21 @@ class Code extends Model
         'solved',
     ];
 
-    public function group()
+    public function folder()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Folder::class);
     }
 
     public function markAsSolved()
     {
         $this->solved = true;
+
+        $this->save();
+    }
+
+    public function solvedToggle(): void
+    {
+        $this->solved = $this->solved ? false : true;
 
         $this->save();
     }

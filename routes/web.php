@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivateFolderController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\CountdownController;
+use App\Http\Controllers\SolveCodeController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,7 @@ Route::post('code/validate', [CodeController::class, 'validateCode'])
 Route::get('reset', [CodeController::class, 'reset'])
     ->name('reset');
 
-Route::get('solucions', [CodeController::class, 'showCodes'])
+Route::get('admin', [CodeController::class, 'showCodes'])
     ->name('folder.show');
 
 Route::post('folder/{folder}/add-try', [CodeController::class, 'addTry'])
@@ -37,6 +38,9 @@ Route::post('folder/{folder}/remove-try', [CodeController::class, 'removeTry'])
 
 Route::get('folder/{folder}/activate', ActivateFolderController::class)
     ->name('folder.activate.toggle');
+
+Route::get('code/{code}/solve-toggle', SolveCodeController::class)
+    ->name('code.solve.toggle');
 
 Route::get('countdown/reset', [CountdownController::class, 'reset'])
     ->name('countdown.reset');
