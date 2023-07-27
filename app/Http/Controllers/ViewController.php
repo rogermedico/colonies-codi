@@ -22,4 +22,15 @@ class ViewController extends Controller
 
         return view('index', compact('folders', 'countdown'));
     }
+
+    public function solutions()
+    {
+        $folders = Folder::query()
+            ->with('codes')
+            ->get();
+
+        $countdown = Countdown::getCountdown();
+
+        return view('solutions', compact('folders', 'countdown'));
+    }
 }

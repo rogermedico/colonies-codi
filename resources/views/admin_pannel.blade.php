@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="my-4 text-center">
-        ⚡ Seguretat dels generadors (Solucions) ⚡
+        ⚡ Seguretat dels generadors (Admin) ⚡
     </h1>
 
     <h2 class="text-center">
