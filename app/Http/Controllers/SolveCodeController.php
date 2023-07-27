@@ -26,6 +26,12 @@ class SolveCodeController extends Controller
                 . '</span> marcat com a invàlid';
         }
 
+        if (! $code->folder->solved()) {
+            $code->folder->update([
+                'activated' => false,
+            ]);
+        }
+
         return back()->with($alertType, $message);
     }
 }
