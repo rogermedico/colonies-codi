@@ -1,16 +1,11 @@
 (() => {
-    const video = document.getElementById('end-video');
-
-    if (video) {
-        setTimeout(() => {
-            video.play();
-        }, video.dataset.delay);
-    }
-
     const activationCountdown = document.getElementById('activation-countdown');
 
     if (activationCountdown) {
         let remainingSeconds = 12;
+
+        const ko = document.getElementById('activated-ko');
+        const ok = document.getElementById('activated-ok')
 
         const interval = setInterval(() => {
             remainingSeconds = remainingSeconds - 1;
@@ -21,6 +16,9 @@
               clearInterval(interval);
 
               activationCountdown.textContent = 'Generadors activats!';
+
+              ko.classList.add('d-none');
+              ok.classList.remove('d-none')
             }
         }, 1000);
 

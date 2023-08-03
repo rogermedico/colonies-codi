@@ -10,4 +10,4 @@ import './toggleSwitch';
 
 import './autoRefresh';
 
-import './video';
+import './activated';
