@@ -12,11 +12,11 @@
             <a class="btn btn-outline-danger" href="{{route('countdown.reset')}}">
                 Establir per d'aquí 3h
             </a>
-            <a class="btn btn-primary" href="{{route('countdown.minutes.subtract', 5)}}">
-                Restar 5m
+            <a class="btn btn-primary" href="{{route('countdown.minutes.subtract', 1)}}">
+                Restar 1m
             </a>
-            <a class="btn btn-primary" href="{{route('countdown.minutes.add', 5)}}">
-                Afegir 5m
+            <a class="btn btn-primary" href="{{route('countdown.minutes.add', 1)}}">
+                Afegir 1m
             </a>
     </div>
 
