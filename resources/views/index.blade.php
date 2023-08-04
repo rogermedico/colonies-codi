@@ -119,5 +119,9 @@
                 </div>
             </div>
         </div>
+    @else
+        <div id="no-autorefresh" class="container text-center mt-3">
+            <img id="activated-ko" src="{{asset('storage/pikachu_ko.png')}}" class="rounded-5">
+        </div>
     @endif
 @endsection

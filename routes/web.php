@@ -48,6 +48,9 @@ Route::get('code/{code}/solve-toggle', SolveCodeController::class)
 Route::get('countdown/reset', [CountdownController::class, 'reset'])
     ->name('countdown.reset');
 
+Route::get('countdown/reset/minute', [CountdownController::class, 'setToOneMinute'])
+    ->name('countdown.reset.minute');
+
 Route::get('countdown/{minutes}/add', [CountdownController::class, 'addMinutes'])
     ->name('countdown.minutes.add');
 

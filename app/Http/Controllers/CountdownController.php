@@ -13,6 +13,13 @@ class CountdownController extends Controller
         return back()->with('message', 'Compte enrere establert per d\'aquí <span class="fw-bold">3 hores</span>');
     }
 
+    public function setToOneMinute()
+    {
+        Countdown::setToOneMinute();
+
+        return back()->with('message', 'Compte enrere establert per d\'aquí <span class="fw-bold">1 minut</span>');
+    }
+
     public function addMinutes(int $minutes)
     {
         Countdown::addMinutes($minutes);

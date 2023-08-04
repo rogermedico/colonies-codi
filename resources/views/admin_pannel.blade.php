@@ -9,15 +9,18 @@
         Compte enrere: <span id="count-down" data-finish-date="{{$countdown->finish}}"></span>
     </h2>
     <div class="mb-4 text-center">
-            <a class="btn btn-outline-danger" href="{{route('countdown.reset')}}">
-                Establir per d'aquí 3h
-            </a>
-            <a class="btn btn-primary" href="{{route('countdown.minutes.subtract', 1)}}">
-                Restar 1m
-            </a>
-            <a class="btn btn-primary" href="{{route('countdown.minutes.add', 1)}}">
-                Afegir 1m
-            </a>
+        <a class="btn btn-outline-danger" href="{{route('countdown.reset')}}">
+            Establir per d'aquí 3h
+        </a>
+        <a class="btn btn-outline-danger" href="{{route('countdown.reset.minute')}}">
+            Establir per d'aquí 1m
+        </a>
+        <a class="btn btn-primary" href="{{route('countdown.minutes.subtract', 1)}}">
+            Restar 1m
+        </a>
+        <a class="btn btn-primary" href="{{route('countdown.minutes.add', 1)}}">
+            Afegir 1m
+        </a>
     </div>
 
     <x-messages/>

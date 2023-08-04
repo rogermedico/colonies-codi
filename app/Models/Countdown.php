@@ -37,6 +37,14 @@ class Countdown extends Model
             ]);
     }
 
+    public static function setToOneMinute()
+    {
+        self::getCountdown()
+            ->update([
+                'finish' => now('Europe/Madrid')->addMinute(),
+            ]);
+    }
+
     public static function addMinutes(int $minutes = 5)
     {
         $countdown = self::getCountdown();
